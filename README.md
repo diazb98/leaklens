@@ -16,6 +16,15 @@ No tienes que reescribir pruebas. Corre en tu máquina, sin red, y **nunca escri
 npx leaklens scan
 ```
 
+![Dashboard de LeakLens: veredicto, indicadores, mapa de exposición y endpoints con más fugas](docs/img/dashboard.png)
+
+<details>
+<summary>Ver el detalle de los hallazgos</summary>
+
+![Hallazgos de LeakLens con un CVV sobreexpuesto abierto](docs/img/hallazgos.png)
+
+</details>
+
 ---
 
 ## Qué detecta
