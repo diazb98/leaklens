@@ -1,0 +1,10 @@
+{
+  "sources": {
+    "har": ["test-results/**/leaklens.har"],
+    "bundles": ["test-results/**/leaklens.bundle.json"]
+  },
+  "countries": ["pe", "co"],
+  "failOn": "high",
+  "baseline": false,
+  "output": { "dir": "leaklens-report" }
+}

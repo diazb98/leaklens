@@ -3,6 +3,8 @@ dist/
 leaklens-report/
 examples/playwright/test-results/
 examples/playwright/leaklens-report/
+examples/demoqa/test-results/
+examples/demoqa/leaklens-report/
 coverage/
 *.log
 !examples/sample-results/logs/*.log

@@ -249,6 +249,8 @@ npm run demo
 
 La demo analiza datos 100 % sintéticos de una "Banca Demo": un HAR de Playwright con su bundle, un reporte de Newman y un log de servicio. Abre `leaklens-report/leaklens-report.html`.
 
+¿Prefieres verlo contra un sitio real? Hay un ejemplo con pruebas de Playwright sobre [DemoQA](https://demoqa.com) en [docs/demoqa.md](docs/demoqa.md).
+
 ## Limitaciones conocidas
 
 - El **CCI** de Perú y los números de cuenta locales se detectan por el nombre del campo, sin validar el dígito de control.

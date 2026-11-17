@@ -24,6 +24,8 @@ export interface ExchangeBase {
   maxBodyBytes: number;
 }
 
+const CODE_MIME = /javascript|ecmascript|typescript|text\/css|text\/html|application\/xhtml/i;
+
 function header(headers: HttpExchange['responseHeaders'], name: string): string | undefined {
   return headers.find((h) => h.name.toLowerCase() === name)?.value;
 }
@@ -65,8 +67,10 @@ function* bodyEvidence(
 ): Generator<Evidence> {
   if (!body?.text || isBinaryMime(body.mimeType)) return;
   const text = body.text.length > maxBytes ? body.text.slice(0, maxBytes) : body.text;
+  // JS, CSS y HTML son código: `password: a` es una variable, no una contraseña.
+  const meta = CODE_MIME.test(body.mimeType ?? '') ? { code: true } : undefined;
   for (const leaf of bodyLeaves(text, body.mimeType)) {
-    yield { ...base, location, key: leaf.key, fieldPath: leaf.path, text: leaf.value };
+    yield { ...base, location, key: leaf.key, fieldPath: leaf.path, text: leaf.value, meta };
   }
 }
 

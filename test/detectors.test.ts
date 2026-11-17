@@ -60,6 +60,11 @@ describe('Secretos', () => {
     expect(run(secretsDetector, ev('********', { key: 'password' }))).toHaveLength(0);
     expect(run(secretsDetector, ev('Basic dXNlcjpwYXNz', { key: 'authorization', location: 'request-header' }))).toHaveLength(0);
   });
+  it('en código JS no confunde variables con contraseñas, pero sí detecta claves reales', () => {
+    const js = { meta: { code: true } };
+    expect(run(secretsDetector, ev('T({userName:r,password:a}),s({password:C})', js))).toHaveLength(0);
+    expect(run(secretsDetector, ev('const k="AKIAIOSFODNN7EXAMPLE";', js))[0]?.kind).toBe('AWS Access Key');
+  });
   it('formatos conocidos', () => {
     expect(run(secretsDetector, ev('key AKIAIOSFODNN7EXAMPLE'))[0]?.kind).toBe('AWS Access Key');
     expect(run(secretsDetector, ev('-----BEGIN RSA PRIVATE KEY-----'))[0]?.kind).toBe('Clave privada');

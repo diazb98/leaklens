@@ -71,7 +71,9 @@ export const secretsDetector: Detector = {
     }
 
     // 3. Texto libre: logs, consola, cuerpos sin estructura.
-    if (!e.key || e.location === 'log-line' || e.location === 'console') {
+    //    En código (JS/CSS/HTML) solo valen los formatos conocidos del paso 2:
+    //    `password: a` ahí es una variable, no una contraseña.
+    if (!e.meta?.code && (!e.key || e.location === 'log-line' || e.location === 'console')) {
       for (const m of e.text.matchAll(BEARER)) {
         const tok = m[1]!;
         if (tok.startsWith('eyJ')) continue;

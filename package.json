@@ -47,6 +47,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test -c examples/playwright/playwright.config.ts",
+    "test:demoqa": "playwright test -c examples/demoqa/playwright.config.ts",
+    "scan:demoqa": "node dist/cli/index.js scan --config examples/demoqa/leaklens.config.json",
     "demo": "node dist/cli/index.js scan --config examples/leaklens.config.json",
     "prepare": "tsup",
     "prepublishOnly": "npm run typecheck && npm test && npm run build"
