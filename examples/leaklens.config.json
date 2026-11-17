@@ -1,0 +1,24 @@
+{
+  "sources": {
+    "har": ["sample-results/**/*.har"],
+    "bundles": ["sample-results/**/leaklens.bundle.json"],
+    "newman": ["sample-results/newman/*.json"],
+    "logs": ["sample-results/logs/*.log"]
+  },
+  "countries": ["pe", "co"],
+  "failOn": "high",
+  "baseline": false,
+  "output": {
+    "dir": "../leaklens-report",
+    "formats": ["html", "json", "sarif", "junit"]
+  },
+  "allowlist": [
+    {
+      "detector": "contact",
+      "location": "response-body",
+      "endpoint": "GET **/api/clientes/*",
+      "fieldPath": "$.email",
+      "reason": "La pantalla de perfil muestra el correo al propio cliente."
+    }
+  ]
+}

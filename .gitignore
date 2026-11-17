@@ -1,0 +1,10 @@
+node_modules/
+dist/
+leaklens-report/
+examples/playwright/test-results/
+examples/playwright/leaklens-report/
+coverage/
+*.log
+!examples/sample-results/logs/*.log
+.DS_Store
+*.traineddata

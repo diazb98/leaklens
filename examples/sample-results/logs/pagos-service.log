@@ -1,0 +1,10 @@
+[32m[INFO][0m 2026-11-17 10:00:01 Iniciando servicio de pagos v3.2.1
++ curl -s -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGktMDAxIiwiaWF0IjoxNzYzMDAwMDAwLCJleHAiOjE3NjMwMDA5MDB9.c2lnbmF0dXJhLWRlLXBydWViYQ" https://banca-demo.test/api/salud
+[INFO] 2026-11-17 10:00:05 Procesando pago tarjeta=4111 1111 1111 1111 cvv=123 monto=150.00
+[DEBUG] 2026-11-17 10:00:05 Conectando a core con password=Secreta123!
+[INFO] 2026-11-17 10:00:06 Cliente DNI 46027897 creado correctamente
+[INFO] 2026-11-17 10:00:07 Pedido 1731800000000 procesado en 45ms
+[INFO] 2026-11-17 10:00:08 Factura emitida al proveedor RUC 20131312955
+[WARN] 2026-11-17 10:00:09 Validación manual para persona natural con RUC 10460278975
+[INFO] 2026-11-17 10:00:10 Notificación enviada a +51 987 654 321
+[INFO] 2026-11-17 10:00:11 Total conciliado 1234567.89 en 3 lotes

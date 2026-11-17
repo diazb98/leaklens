@@ -1,0 +1,282 @@
+{
+  "collection": {
+    "info": {
+      "name": "Banca Demo API"
+    }
+  },
+  "run": {
+    "executions": [
+      {
+        "item": {
+          "name": "Consultar cliente Colombia"
+        },
+        "request": {
+          "method": "GET",
+          "url": {
+            "protocol": "https",
+            "host": [
+              "api",
+              "banca-demo",
+              "test"
+            ],
+            "path": [
+              "v1",
+              "clientes",
+              "co",
+              "7788"
+            ],
+            "query": []
+          },
+          "header": [
+            {
+              "key": "x-api-key",
+              "value": "AKIAIOSFODNN7EXAMPLE"
+            }
+          ]
+        },
+        "response": {
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              110,
+              111,
+              109,
+              98,
+              114,
+              101,
+              34,
+              58,
+              34,
+              67,
+              97,
+              114,
+              108,
+              111,
+              115,
+              32,
+              82,
+              117,
+              105,
+              122,
+              34,
+              44,
+              34,
+              99,
+              101,
+              100,
+              117,
+              108,
+              97,
+              34,
+              58,
+              34,
+              49,
+              48,
+              50,
+              48,
+              51,
+              48,
+              52,
+              48,
+              53,
+              48,
+              34,
+              44,
+              34,
+              110,
+              105,
+              116,
+              34,
+              58,
+              34,
+              49,
+              48,
+              50,
+              48,
+              51,
+              48,
+              52,
+              48,
+              53,
+              48,
+              45,
+              56,
+              34,
+              44,
+              34,
+              99,
+              101,
+              108,
+              117,
+              108,
+              97,
+              114,
+              34,
+              58,
+              34,
+              43,
+              53,
+              55,
+              32,
+              51,
+              49,
+              48,
+              32,
+              53,
+              53,
+              53,
+              32,
+              49,
+              50,
+              51,
+              52,
+              34,
+              125
+            ]
+          }
+        }
+      },
+      {
+        "item": {
+          "name": "Consultar empresa"
+        },
+        "request": {
+          "method": "GET",
+          "url": {
+            "protocol": "https",
+            "host": [
+              "api",
+              "banca-demo",
+              "test"
+            ],
+            "path": [
+              "v1",
+              "empresas",
+              "800197268"
+            ],
+            "query": [
+              {
+                "key": "incluir",
+                "value": "contactos"
+              }
+            ]
+          },
+          "header": []
+        },
+        "response": {
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              114,
+              97,
+              122,
+              111,
+              110,
+              83,
+              111,
+              99,
+              105,
+              97,
+              108,
+              34,
+              58,
+              34,
+              69,
+              109,
+              112,
+              114,
+              101,
+              115,
+              97,
+              32,
+              68,
+              101,
+              109,
+              111,
+              32,
+              83,
+              65,
+              83,
+              34,
+              44,
+              34,
+              110,
+              105,
+              116,
+              34,
+              58,
+              34,
+              56,
+              48,
+              48,
+              49,
+              57,
+              55,
+              50,
+              54,
+              56,
+              45,
+              52,
+              34,
+              125
+            ]
+          }
+        }
+      },
+      {
+        "item": {
+          "name": "Recuperar clave"
+        },
+        "request": {
+          "method": "GET",
+          "url": {
+            "protocol": "https",
+            "host": [
+              "api",
+              "banca-demo",
+              "test"
+            ],
+            "path": [
+              "v1",
+              "clave",
+              "recuperar"
+            ],
+            "query": [
+              {
+                "key": "otp",
+                "value": "482915"
+              },
+              {
+                "key": "email",
+                "value": "carlos.ruiz@correo-demo.co"
+              }
+            ]
+          },
+          "header": []
+        },
+        "response": {
+          "code": 204,
+          "header": []
+        }
+      }
+    ]
+  }
+}

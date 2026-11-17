@@ -1,0 +1,98 @@
+{
+  "name": "leaklens",
+  "version": "1.0.0",
+  "description": "Detecta datos sensibles (tarjetas, CVV, tokens, documentos de Perú y Colombia, cuentas) que tus pruebas E2E y de API ya están viendo: HAR, trazas de Playwright, Newman, Cypress, Selenium, logs y capturas.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "leaklens": "./dist/cli/index.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./playwright": {
+      "types": "./dist/integrations/playwright.d.ts",
+      "import": "./dist/integrations/playwright.js",
+      "require": "./dist/integrations/playwright.cjs"
+    },
+    "./cypress/plugin": {
+      "types": "./dist/integrations/cypress-plugin.d.ts",
+      "import": "./dist/integrations/cypress-plugin.js",
+      "require": "./dist/integrations/cypress-plugin.cjs"
+    },
+    "./cypress/support": {
+      "import": "./dist/integrations/cypress-support.js",
+      "require": "./dist/integrations/cypress-support.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "integrations",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test -c examples/playwright/playwright.config.ts",
+    "demo": "node dist/cli/index.js scan --config examples/leaklens.config.json",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "keywords": [
+    "qa",
+    "security",
+    "pci-dss",
+    "pii",
+    "data-leak",
+    "playwright",
+    "cypress",
+    "selenium",
+    "newman",
+    "postman",
+    "jenkins",
+    "banking"
+  ],
+  "dependencies": {
+    "commander": "12.1.0",
+    "fast-glob": "3.3.2",
+    "picomatch": "4.0.2",
+    "stream-json": "1.9.1",
+    "yauzl": "3.2.0",
+    "zod": "3.23.8"
+  },
+  "peerDependencies": {
+    "@playwright/test": ">=1.40.0",
+    "tesseract.js": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@playwright/test": {
+      "optional": true
+    },
+    "tesseract.js": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "1.49.1",
+    "@types/node": "22.10.2",
+    "@types/picomatch": "3.0.1",
+    "@types/stream-json": "1.7.8",
+    "@types/yauzl": "2.10.3",
+    "tesseract.js": "5.1.1",
+    "tsup": "8.3.5",
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
+  }
+}

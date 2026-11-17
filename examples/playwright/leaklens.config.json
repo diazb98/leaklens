@@ -1,0 +1,10 @@
+{
+  "sources": {
+    "har": ["test-results/**/leaklens.har"],
+    "trace": ["test-results/**/trace.zip"],
+    "bundles": ["test-results/**/leaklens.bundle.json"]
+  },
+  "failOn": "high",
+  "baseline": false,
+  "output": { "dir": "leaklens-report" }
+}

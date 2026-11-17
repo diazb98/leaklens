@@ -1,0 +1,58 @@
+// Ejemplo de pipeline declarativo con LeakLens.
+// Plugins de Jenkins usados: JUnit, HTML Publisher y Warnings NG (opcional, para SARIF).
+
+pipeline {
+  agent any
+
+  environment {
+    // Sal fija para que el hash de un valor sea el mismo entre builds (permite allowlist por valueHash).
+    // Guárdala como credencial de tipo "Secret text".
+    LEAKLENS_SALT = credentials('leaklens-salt')
+  }
+
+  stages {
+    stage('Instalar') {
+      steps {
+        sh 'npm ci'
+        sh 'npx playwright install --with-deps chromium'
+      }
+    }
+
+    stage('Pruebas E2E') {
+      steps {
+        // Las pruebas importan { test } desde 'leaklens/playwright': dejan HAR + bundle por prueba.
+        sh 'npx playwright test || true'
+      }
+    }
+
+    stage('Pruebas de API') {
+      steps {
+        sh 'npx newman run postman/coleccion.json -e postman/qa.json -r cli,json --reporter-json-export newman/reporte.json || true'
+      }
+    }
+
+    stage('LeakLens') {
+      steps {
+        // Analiza también los logs que dejó la aplicación durante las pruebas.
+        // Falla el stage si hay hallazgos nuevos de severidad alta o crítica.
+        sh 'npx leaklens scan --logs "logs/**/*.log" --fail-on high'
+      }
+    }
+  }
+
+  post {
+    always {
+      junit testResults: 'leaklens-report/leaklens-junit.xml', allowEmptyResults: true
+      recordIssues tools: [sarif(pattern: 'leaklens-report/leaklens.sarif', id: 'leaklens', name: 'LeakLens')]
+      publishHTML target: [
+        reportDir: 'leaklens-report',
+        reportFiles: 'leaklens-report.html',
+        reportName: 'LeakLens',
+        keepAll: true,
+        alwaysLinkToLastBuild: true,
+        allowMissing: true
+      ]
+      // Los HAR y bundles contienen datos completos: no los archives como artefactos públicos.
+    }
+  }
+}
