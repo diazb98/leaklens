@@ -48,8 +48,15 @@
     "test": "vitest run",
     "test:e2e": "playwright test -c examples/playwright/playwright.config.ts",
     "demo": "node dist/cli/index.js scan --config examples/leaklens.config.json",
+    "prepare": "tsup",
     "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diazb98/leaklens.git"
+  },
+  "homepage": "https://github.com/diazb98/leaklens#readme",
+  "bugs": "https://github.com/diazb98/leaklens/issues",
   "keywords": [
     "qa",
     "security",

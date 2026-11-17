@@ -59,11 +59,11 @@ Para esto necesita el texto de las pantallas, que lo capturan las integraciones 
 ## Instalación
 
 ```bash
-npm i -D leaklens
+npm i -D github:diazb98/leaklens
 npx leaklens init      # crea leaklens.config.json
 ```
 
-Requiere Node 18.18 o superior.
+Requiere Node 18.18 o superior. Mientras no esté publicado en npm, se instala directo desde GitHub y se compila solo al instalarse.
 
 ## Fuentes
 
