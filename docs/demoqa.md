@@ -23,6 +23,18 @@ PW_CHANNEL=chrome npm run test:demoqa
 | `bookstore.spec.ts` | Carga el catálogo desde la API real `GET /BookStore/v1/Books`, busca y abre un libro | Nada: el catálogo es público. Sirve como línea base. |
 | `bookstore-login.spec.ts` | Inicia sesión y abre el perfil | La sesión queda en cookies que crea JavaScript (sin `HttpOnly`): LeakLens debería marcarla. |
 
+## Lo que encontramos después del login
+
+Revisamos una sesión real del Book Store (noviembre 2026), leyendo solo nombres y estructura, nunca valores:
+
+| Hallazgo | Detalle | Severidad |
+|---|---|---|
+| **Contraseña dentro del JWT** | La cookie `token` es un JWT con payload `{ userName, password, iat }`. Un JWT no está cifrado: cualquiera que vea el token lee la contraseña. | Crítica |
+| **Sesión accesible desde JavaScript** | La cookie `token` se crea sin `HttpOnly`: un XSS o cualquier script de terceros puede robarla. | Alta |
+| **Token sin vencimiento** | El JWT no tiene `exp`: si se filtra, sirve para siempre. | Media |
+
+La prueba [`test/demoqa-replica.test.ts`](../test/demoqa-replica.test.ts) reproduce ese patrón con datos inventados y verifica que LeakLens detecta los tres hallazgos, que rompe el build y que ni la contraseña ni el token aparecen en los reportes.
+
 ## El login es opcional
 
 Necesita una cuenta propia. Créala tú en https://demoqa.com/register y pasa las credenciales por variables de entorno, nunca en el código:
