@@ -181,7 +181,7 @@ const log = [
   '[INFO] 2026-11-17 10:00:11 Total conciliado 1234567.89 en 3 lotes',
 ].join('\n');
 
-const perfil = path.join(out, 'playwright', 'perfil-el-cliente-ve-su-perfil-chromium');
+const perfil = path.join(out, 'playwright', 'perfil');
 mkdirSync(perfil, { recursive: true });
 writeFileSync(path.join(perfil, 'leaklens.har'), JSON.stringify(har, null, 2));
 writeFileSync(path.join(perfil, 'leaklens.bundle.json'), JSON.stringify(bundle, null, 2));

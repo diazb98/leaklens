@@ -1,0 +1,61 @@
+{
+  "leaklens": 1,
+  "tool": "playwright",
+  "test": {
+    "title": "el cliente ve su perfil y paga con tarjeta",
+    "titlePath": [
+      "perfil.spec.ts",
+      "Perfil del cliente",
+      "el cliente ve su perfil y paga con tarjeta"
+    ]
+  },
+  "pages": [
+    {
+      "url": "https://banca-demo.test/perfil",
+      "text": "Hola, Ana Torres\nCorreo: ana.torres@correo-demo.pe\nTarjeta VISA •••• 1111\nCuenta •••• 9012"
+    },
+    {
+      "url": "https://banca-demo.test/pago/confirmacion",
+      "text": "Pago aprobado\nReferencia PAG-20261117-0001\nTarjeta •••• 1111"
+    }
+  ],
+  "urls": [
+    "https://banca-demo.test/perfil",
+    "https://banca-demo.test/pago?token=eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJjbGktMDAxIiwicm9sIjoiY2xpZW50ZSIsImlhdCI6MTc2MzAwMDAwMCwiZXhwIjoxNzYzMDAwOTAwfQ.",
+    "https://banca-demo.test/pago/confirmacion"
+  ],
+  "localStorage": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGktMDAxIiwiZG5pIjoiNDYwMjc4OTciLCJpYXQiOjE3NjMwMDAwMDAsImV4cCI6MTc2NTU5MjAwMH0.c2lnbmF0dXJhLWRlLXBydWViYQ",
+    "ultimaTarjeta": "4111 1111 1111 1111",
+    "preferencias": "{\"tema\":\"oscuro\",\"idioma\":\"es-PE\"}"
+  },
+  "sessionStorage": {
+    "paso": "confirmacion"
+  },
+  "cookies": [
+    {
+      "name": "SESSIONID",
+      "value": "s3ss10n-4b9f2c71d8e04a6f",
+      "domain": "banca-demo.test",
+      "httpOnly": false,
+      "secure": false
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.123456789.1731800000",
+      "domain": "banca-demo.test",
+      "httpOnly": false,
+      "secure": false
+    }
+  ],
+  "console": [
+    {
+      "type": "log",
+      "text": "Respuesta de pago: {\"estado\":\"APROBADO\",\"pan\":\"378282246310005\"}"
+    },
+    {
+      "type": "info",
+      "text": "Render perfil en 120ms"
+    }
+  ]
+}
